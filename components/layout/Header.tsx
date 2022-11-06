@@ -1,16 +1,27 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai';
 import HeaderMenu from "./HeaderMenu";
+import OverlayCurtain from "./OverlayCurtain";
 
 const Header = () => {
+    const { pathname } = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    useEffect(() => {
+        document.body.className = isMenuOpen ? "isMenuOpen" : "";
+    }, [isMenuOpen]);
+
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
 
     return (
         <>
             <header className="border-b sticky top-0 bg-white/40 backdrop-blur-md">
                 <div className="p-4 flex flex-row justify-between max-w-4xl mx-auto">
-                    <button className="p-1 hover:bg-gray-200 rounded-lg">
+                    <button className="p-1 hover:bg-gray-200 rounded-lg" onClick={() => setIsMenuOpen(true)}>
                         <span>
                             <AiOutlineMenu size="2rem" />
                         </span>
@@ -24,6 +35,9 @@ const Header = () => {
                 </div>
             </header>
             <HeaderMenu isMenuOpen={isMenuOpen} />
+            {isMenuOpen ? (
+                <OverlayCurtain onClick={() => setIsMenuOpen(false)} />
+            ) : null}
         </>
     );
 }

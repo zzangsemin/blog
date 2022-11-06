@@ -33,7 +33,7 @@ const HeaderMenu = ({isMenuOpen}: HeaderMenuProps) => {
 
     return (
         <aside 
-            className={`bg-white fixed top-0 bottom-0 w-3/5 max-w-sm border-r transition-all duration-500 ${isMenuOpen ? 'left-0' : '-left-[60%]'}`}
+            className={`z-50 bg-white fixed top-0 bottom-0 w-3/5 max-w-sm transition-all duration-500 ${isMenuOpen ? 'left-0' : '-left-[60%]'}`}
         >
             <div className='py-8 flex flex-col h-full'>
                 <div className="relative w-full h-1/3">
