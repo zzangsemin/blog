@@ -16,7 +16,7 @@ interface PageHeadProps{
 const PageHead = ({title, description, ogImageSrc, ogImageTitle}: PageHeadProps) => {
     const {asPath} = useRouter();
 
-    const siteUrl = process.env.SITE_URL;
+    const siteUrl = process.env.SITE_URL ?? 'https://blog-steel-chi.vercel.app';
 
     const fullUrl = `${siteUrl}${asPath}`;
     const fullTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;

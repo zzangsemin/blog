@@ -52,7 +52,7 @@ const handler = async (req: NextRequest) => {
             name: "Pretendard Black",
             data: await fetch(
               new URL(
-                "../../assets/Pretendard-Black.woff",
+                "../../assets/Pretendard-Black.subset.woff",
                 import.meta.url
               )
             ).then((res) => res.arrayBuffer()),
