@@ -10,16 +10,17 @@ interface PageHeadProps{
     title?: string;
     description?: string;
     ogImageSrc?: string;
+    ogImageTitle?: string;
 }
 
-const PageHead = ({title, description, ogImageSrc}: PageHeadProps) => {
+const PageHead = ({title, description, ogImageSrc, ogImageTitle}: PageHeadProps) => {
     const {asPath} = useRouter();
 
     const siteUrl = process.env.SITE_URL;
 
     const fullUrl = `${siteUrl}${asPath}`;
     const fullTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
-    const fullOgImageSrc = ogImageSrc ?? `${siteUrl}${DEFAULT_OG_IMAGE_SRC}`;
+    const fullOgImageSrc = ogImageSrc ?? `${siteUrl}${DEFAULT_OG_IMAGE_SRC}${ogImageTitle ? `?title=${ogImageTitle}` : ''}`;
 
     return (
         <Head>
