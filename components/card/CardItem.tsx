@@ -21,7 +21,7 @@ const CardItem = ({data}: CardItemProps) => {
               <Image src={cover} alt={title} layout='fill' objectFit='cover' className='group-hover:scale-110 transition-all duration-300' />
             </div>
             <div className='flex flex-col gap-2'>
-              <h2 className='text-2xl font-bold group-hover:text-blue-700'>
+              <h2 className='text-2xl font-bold group-hover:text-blue-500'>
                 <IconRender icon={icon} />
                 {title}
               </h2>

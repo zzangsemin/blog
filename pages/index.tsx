@@ -14,7 +14,6 @@ interface HomeProps{
 }
 
 const Home = ({data, allTags}: HomeProps) => {
-  console.log("allTags>>",allTags);
   return (
     <>
       <PageHead />
@@ -28,6 +27,7 @@ const Home = ({data, allTags}: HomeProps) => {
           </div>
         </aside>
         <div className='flex-grow'>
+          <h3 className='font-bold text-4xl mb-4'>Devlog</h3>
           <CardList data={data} />
         </div>
       </section>
