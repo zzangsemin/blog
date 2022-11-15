@@ -4,6 +4,7 @@ import React from 'react'
 import { CardData } from 'types/types'
 import IconRender from './IconRender';
 import TagList from './tags/TagList';
+import { motion } from 'framer-motion'
 
 interface CardItemProps{
   data: CardData;
@@ -13,7 +14,12 @@ const CardItem = ({data}: CardItemProps) => {
   const {id, cover, title, description, published, icon, tags} = data;
 
   return (
-    <li>
+    <motion.li
+      initial={{opacity: 0}}
+      whileInView={{opacity: 1}}
+      transition={{duration: 1}}
+      viewport={{once: true}}
+    >
       <article className='group'>
         <Link href={`/blog/${id}`}>
           <a>
@@ -32,7 +38,7 @@ const CardItem = ({data}: CardItemProps) => {
         </Link>
         <div className='mt-2'><TagList tags={tags} /></div>
       </article>
-    </li>
+    </motion.li>
   )
 }
 
