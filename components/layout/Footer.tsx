@@ -4,7 +4,7 @@ import { AiFillGithub, AiOutlineInstagram, AiOutlineYoutube } from 'react-icons/
 const Footer = () => {
     return (
         <footer className='bg-gradient-to-r from-cyan-500 to-blue-500 p-8 text-white'>
-            <div className='flex flex-row flex-wrap justify-around items-center max-w-5xl mx-auto'>
+            <div className='flex flex-row flex-wrap justify-around items-center max-w-5xl mx-auto gap-4'>
                 <a href='mailto:1015tpals@gmail.com' className='hover:underline'>
                     1015tpals@gmail.com
                 </a>
