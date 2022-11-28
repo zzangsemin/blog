@@ -5,6 +5,7 @@ import { CardData } from 'types/types'
 import IconRender from './IconRender';
 import TagList from './tags/TagList';
 import { motion } from 'framer-motion'
+import { ImageSrcType } from 'pages/api/getImageSrc';
 
 interface CardItemProps{
   data: CardData;
@@ -18,13 +19,10 @@ const CardItem = ({data}: CardItemProps) => {
 
   const getImageSrc = useCallback(async () => {
       const res = await fetch(`api/getImageSrc?id=${id}`);
-      const {coverSrc, iconSrc} = await res.json() as {
-        coverSrc: CardData["cover"];
-        iconSrc: CardData["icon"];
-      };
+      const {cover, icon}: ImageSrcType = await res.json();
 
-      setCoverSrc(coverSrc);
-      setIconSrc(iconSrc);
+      setCoverSrc(cover);
+      setIconSrc(icon);
   }, [id]);
 
   useEffect(() => {

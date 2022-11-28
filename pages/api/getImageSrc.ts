@@ -3,14 +3,14 @@ import { getPageItem } from "cms/notion";
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { CardData } from "types/types";
 
-interface ImageSrc{
+export interface ImageSrcType{
     cover: CardData["cover"];
     icon: CardData["icon"];
 }
 
 const handler = async(
   req: NextApiRequest,
-  res: NextApiResponse<ImageSrc>
+  res: NextApiResponse<ImageSrcType>
 ) => {
     const {id} = req.query;
 
