@@ -6,6 +6,7 @@ import IconRender from './IconRender';
 import TagList from './tags/TagList';
 import { motion } from 'framer-motion'
 import { ImageSrcType } from 'pages/api/getImageSrc';
+import { IMAGE_LOADING_INDICATION } from 'const/const';
 
 interface CardItemProps{
   data: CardData;
@@ -16,13 +17,16 @@ const CardItem = ({data}: CardItemProps) => {
 
   const [coverSrc, setCoverSrc] = useState(cover);
   const [iconSrc, setIconSrc] = useState(icon);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getImageSrc = useCallback(async () => {
-      const res = await fetch(`api/getImageSrc?id=${id}`);
-      const {cover, icon}: ImageSrcType = await res.json();
+    setIsLoading(true);
+    
+    const res = await fetch(`api/getImageSrc?id=${id}`);
+    const {cover, icon}: ImageSrcType = await res.json();
 
-      setCoverSrc(cover);
-      setIconSrc(icon);
+    setCoverSrc(cover);
+    setIconSrc(icon);
   }, [id]);
 
   useEffect(() => {
@@ -42,7 +46,17 @@ const CardItem = ({data}: CardItemProps) => {
         <Link href={`/blog/${id}`}>
           <a>
             <div className='relative pt-[64%] rounded-lg overflow-hidden mb-4'>
-              <Image src={coverSrc} alt={title} layout='fill' objectFit='cover' className='group-hover:scale-110 transition-all duration-300' onError={getImageSrc} />
+              <Image 
+                src={coverSrc} 
+                alt={title} 
+                layout='fill' 
+                objectFit='cover' 
+                className={`group-hover:scale-110 transition-all duration-300 ${isLoading ? 'animate-pulse' : ''}`}
+                onError={getImageSrc} 
+                placeholder="blur"
+                blurDataURL={IMAGE_LOADING_INDICATION}
+                onLoad={() => setIsLoading(false)}
+              />
             </div>
             <div className='flex flex-col gap-2'>
               <h2 className='text-2xl font-bold group-hover:text-blue-500'>
