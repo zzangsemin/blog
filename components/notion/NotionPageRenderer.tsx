@@ -29,6 +29,7 @@ const NotionPageRenderer = ({recordMap}: NotionPageRendererProps) => {
       fullPage={true} 
       disableHeader={true} 
       showTableOfContents={true}
+      previewImages={!!recordMap?.preview_images}
       components={{Code, Collection, Equation, Link, Image,
         propertyDateValue: (dateProperty) => dateProperty.data[0][1][0][1].start_date,
         propertySelectValue: ({option: {id, color, value}}) => <TagItem key={id} color={color} name={value} />,

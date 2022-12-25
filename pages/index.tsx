@@ -5,6 +5,7 @@ import type { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { getAllTags } from 'utils/getAllTags'
+import { insertPreviewImage } from 'utils/previewImage'
 import { getDatabaseItems } from '../cms/notion'
 import CardList from '../components/card/CardList'
 import PageHead from '../components/common/PageHead'
@@ -67,18 +68,20 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const databaseItems = await getDatabaseItems(databaseId);
 
   const parsedData = parseDatabaseItems(databaseItems);
+
+  const dataWithPreview = await insertPreviewImage(parsedData);
   
   const allTags = getAllTags(parsedData);
 
   const duplicatedData:CardData[] = [];
 
   for(let i = 0;i<20;i++){
-    duplicatedData.push(...parsedData);
+    duplicatedData.push(...dataWithPreview);
   }
 
   return {
     props: {
-      data: duplicatedData,
+      data: dataWithPreview,
       allTags,
     },
     revalidate: 60,

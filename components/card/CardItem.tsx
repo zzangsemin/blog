@@ -14,7 +14,7 @@ interface CardItemProps{
 }
 
 const CardItem = ({data}: CardItemProps) => {
-  const {id, cover, title, description, published, icon, tags, expiryTime} = data;
+  const {id, cover, title, description, published, icon, tags, expiryTime, preview} = data;
 
   const [coverSrc, setCoverSrc] = useState(cover);
   const [iconSrc, setIconSrc] = useState(icon);
@@ -55,7 +55,7 @@ const CardItem = ({data}: CardItemProps) => {
                 className={`group-hover:scale-110 transition-all duration-300`}
                 onError={getImageSrc} 
                 placeholder="blur"
-                blurDataURL={IMAGE_LOADING_INDICATION}
+                blurDataURL={preview?.dataURIBase64 ?? IMAGE_LOADING_INDICATION}
                 onLoad={() => setIsLoading(false)}
               />
               {isLoading ? (
