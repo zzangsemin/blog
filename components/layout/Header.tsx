@@ -30,7 +30,9 @@ const Header = () => {
                         <h1 className="font-bold text-2xl cursor-pointer select-none">Notion Blog</h1>
                     </Link>
                     <button className="p-1 hover:bg-gray-200 rounded-lg">
-                        <AiOutlineSearch size="2rem" />
+                        <Link href={`/search`}>
+                            <AiOutlineSearch size="2rem" />
+                        </Link>
                     </button>
                 </div>
             </header>
